@@ -1,0 +1,8 @@
+media/*
+*.pyc
+.DS_Store
+._*
+*.sql
+*.swp
+celeryev.pid
+*.un~
