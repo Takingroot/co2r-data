@@ -1,1 +1,1 @@
-web:python manage.py runserver
+gunicorn co2r.wsgi
