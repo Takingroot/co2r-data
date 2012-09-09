@@ -5,3 +5,5 @@ wsgiref==0.1.2
 boto==2.5.2
 django-storages==1.1.5
 django-dynamicresponse==0.4.1
+south==0.7.6
+PIL==1.1.7
