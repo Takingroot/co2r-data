@@ -1,1 +1,1 @@
-gunicorn co2r.wsgi
+web: gunicorn co2r.wsgi
