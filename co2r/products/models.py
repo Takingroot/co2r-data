@@ -24,6 +24,10 @@ class Product(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('product', (), {'internal_name': self.internal_name})
+
 
 class Footprint(models.Model):
     product = models.ForeignKey(Product)
@@ -38,6 +42,11 @@ class Footprint(models.Model):
 
     def __unicode__(self):
         return "%i Footprint for %s" % (self.year, self.product.name)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('footprint', (), {'internal_name': self.product.internal_name,
+            'year': self.year})
 
 
 class FootprintCarbonSource(models.Model):

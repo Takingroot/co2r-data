@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ footprint.year }} footprint for {{ footprint.product.name }}{% endblock %}
+{% block content %}
+<h2>{{ footprint.year }} footprint for {{ footprint.product.name }}</h2>
+<ul>
+<li>Co2 Per Unit - {{ footprint.co2_per_unit }}</li>
+<li>Total Tons of Co2 Produced - {{ footprint.total_tons_produced }}</li>
+<li>Total Offset Tons - {{ footprint.total_offset_tons }}</li>
+<li>Total Trees Planted - {{ footprint.total_trees_planted }}</li>
+<li>Annual Report - {{ annual_report.file.url }}</lI>
+</ul>
+{% endblock %}
