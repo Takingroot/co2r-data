@@ -23,6 +23,11 @@ def product(request, internal_name):
     return SerializeOrRender('products/product.html', {'product': product})
 
 
+def footprints(request):
+    footprints = Footprint.objects.all()
+    return SerializeOrRender('products/footprints.html', {'footprints': footprints})
+
+
 def footprint(request, internal_name, year):
     try:
         footprint = Footprint.objects.get(product__internal_name=internal_name,
@@ -32,7 +37,3 @@ def footprint(request, internal_name, year):
 
     return SerializeOrRender('products/footprint.html', {'footprint': footprint})
 
-
-def footprints(request, internal_name):
-    footprints = Footprint.objects.filter(product__internal_name=internal_name)
-    return SerializeOrRender('products/footprints.html', {'footprints': footprints})
