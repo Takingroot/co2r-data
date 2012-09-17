@@ -16,13 +16,39 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='products', null=True, blank=True)
     icon_image = models.ImageField(upload_to='products/icon', null=True, blank=True)
-    unit_quantity = models.IntegerField(null=True, blank=True)
+    unit_quantity = models.DecimalField(max_digits=14, decimal_places=2, null=True, blank=True)
     unit = models.CharField(max_length=50, null=True, blank=True)
     unit_verbose = models.CharField(max_length=50, null=True, blank=True)
     organization = models.ForeignKey(Organization)
 
     def __unicode__(self):
         return self.name
+
+    def icon_image_url(self):
+        return self.icon_image.url
+
+    def image_url(self):
+        try:
+            return self.image.url
+        except ValueError:
+            return ''
+
+    def organization_name(self):
+        return self.organization.name
+
+    def serialize_fields(self):
+        return [
+            'name',
+            'internal_name',
+            'active',
+            'description',
+            'image_url',
+            'icon_image_url',
+            'unit_quantity',
+            'unit',
+            'unit_verbose',
+            'organization'
+        ]
 
     @models.permalink
     def get_absolute_url(self):
