@@ -17,3 +17,12 @@ class Organization(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class ContactInfo(models.Model):
+    name = models.CharField(max_length=100)
+    link = models.CharField(max_length=200)
+    organization = models.ForeignKey(Organization)
+
+    def __unicode__(self):
+        return u'%s - %s' % (self.organization.name, self.name)
