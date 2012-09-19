@@ -37,3 +37,4 @@ def footprint(request, internal_name, year):
 
     return SerializeOrRender('artifacts/footprint.html', {'footprint': footprint})
 
+# Create your views here.

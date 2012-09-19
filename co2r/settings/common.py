@@ -122,8 +122,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'co2r.main',
-    'co2r.products',
+    'co2r.artifacts',
     'co2r.organizations',
+    'co2r.products',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from co2r.products.models import CarbonSource, Footprint, Product
+from co2r.artifacts.models import CarbonSource, Footprint, Artifact
 
 admin.site.register(CarbonSource)
 admin.site.register(Footprint)
-admin.site.register(Product)
+admin.site.register(Artifact)

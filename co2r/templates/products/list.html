@@ -2,9 +2,9 @@
 
 {% block content %}
 <ul>
-{% for product in products %}
+{% for artifact in artifacts %}
 <li>
-<a href="{{ product.get_absolute_url }}">{{ product }}</a>
+<a href="{{ artifact.get_absolute_url }}">{{ artifact }}</a>
 </li>
 {% endfor %}
 </ul>
