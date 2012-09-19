@@ -26,6 +26,10 @@ TIME_ZONE = 'Canada/Eastern'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+LANGUAGES = (
+    ('fr-ca', 'French'),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -114,6 +118,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'hvad',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -124,7 +129,6 @@ INSTALLED_APPS = (
     'co2r.main',
     'co2r.artifacts',
     'co2r.organizations',
-    'co2r.products',
 )
 
 # A sample logging configuration. The only tangible logging

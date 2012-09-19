@@ -1,10 +1,14 @@
 from django.db import models
 
+from hvad.models import TranslatableModel, TranslatedFields
 
-class Organization(models.Model):
-    name = models.CharField(max_length=100)
+
+class Organization(TranslatableModel):
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='organizations')
+
+    translations = TranslatedFields(
+        name=models.CharField(max_length=100))
 
     def image_url(self):
         try:
@@ -16,7 +20,7 @@ class Organization(models.Model):
         return ['name', 'slug', 'image_url']
 
     def __unicode__(self):
-        return self.name
+        return self.slug
 
 
 class ContactInfo(models.Model):

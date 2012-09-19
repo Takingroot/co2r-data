@@ -1,4 +1,6 @@
 from django.db import models
+from hvad.models import TranslatableModel, TranslatedFields
+
 from co2r.organizations.models import Organization
 
 
@@ -9,8 +11,7 @@ class CarbonSource(models.Model):
         return self.name
 
 
-class Artifact(models.Model):
-    name = models.CharField(max_length=100)
+class Artifact(TranslatableModel):
     slug = models.SlugField(max_length=100, unique=True)
     active = models.BooleanField(default=False)
     description = models.TextField(null=True, blank=True)
@@ -18,8 +19,13 @@ class Artifact(models.Model):
     icon_image = models.ImageField(upload_to='artifacts/icon', null=True, blank=True)
     unit_quantity = models.DecimalField(max_digits=14, decimal_places=2, null=True, blank=True)
     unit = models.CharField(max_length=50, null=True, blank=True)
-    unit_verbose = models.CharField(max_length=50, null=True, blank=True)
     organization = models.ForeignKey(Organization)
+
+    translations = TranslatedFields(
+        name=models.CharField(max_length=100),
+        description=models.TextField(null=True, blank=True),
+        unit_verbose=models.CharField(max_length=50, null=True, blank=True)
+    )
 
     def __unicode__(self):
         return self.name
