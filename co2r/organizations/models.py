@@ -1,14 +1,11 @@
 from django.db import models
 
-from hvad.models import TranslatableModel, TranslatedFields
 
-
-class Organization(TranslatableModel):
+class Organization(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='organizations')
-
-    translations = TranslatedFields(
-        name=models.CharField(max_length=100))
+    name = models.CharField(max_length=100)
+    name_fr = models.CharField(max_length=100)
 
     def image_url(self):
         try:
@@ -25,6 +22,7 @@ class Organization(TranslatableModel):
 
 class ContactInfo(models.Model):
     name = models.CharField(max_length=100)
+    name_fr = models.CharField(max_length=100)
     link = models.CharField(max_length=200)
     organization = models.ForeignKey(Organization)
 
