@@ -11,14 +11,23 @@ def artifacts(request):
     """
     artifacts = Artifact.objects.all()
 
+    language_code = request.GET.get('language', None)
+    if language_code != None:
+        for artifact in artifacts:
+            artifact.set_language(language_code)
+
     return SerializeOrRender('artifacts/list.html', {'artifacts': artifacts})
 
 
-def artifact(request, internal_name):
+def artifact(request, slug):
     """
     Returns a list of all artifacts
     """
-    artifact = Artifact.objects.get(internal_name=internal_name)
+    artifact = Artifact.objects.get(slug=slug)
+
+    language_code = request.GET.get('language', None)
+    if language_code != None:
+        artifact.set_language(language_code)
 
     return SerializeOrRender('artifacts/artifact.html', {'artifact': artifact})
 
@@ -28,9 +37,9 @@ def footprints(request):
     return SerializeOrRender('artifacts/footprints.html', {'footprints': footprints})
 
 
-def footprint(request, internal_name, year):
+def footprint(request, slug, year):
     try:
-        footprint = Footprint.objects.get(artifact__internal_name=internal_name,
+        footprint = Footprint.objects.get(artifact__slug=slug,
             year=year)
     except Footprint.DoesNotExist:
         raise Http404

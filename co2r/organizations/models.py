@@ -14,6 +14,8 @@ class Organization(models.Model):
     description = models.TextField(null=True, blank=True)
     description_fr = models.TextField(null=True, blank=True)
 
+    translated_fields = ['name', 'description']
+
     def image_url(self):
         try:
             return self.image.url
@@ -33,6 +35,8 @@ class ContactInfo(models.Model):
     name_fr = models.CharField(max_length=100)
     link = models.CharField(max_length=200)
     organization = models.ForeignKey(Organization)
+
+    translated_fields = ['name']
 
     def __unicode__(self):
         return u'%s - %s' % (self.organization.name, self.name)
