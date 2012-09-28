@@ -1,14 +1,5 @@
 from django.db import models
-
 from co2r.organizations.models import Organization
-
-
-class CarbonSource(models.Model):
-    name = models.CharField(max_length=100)
-    name_fr = models.CharField(max_length=100)
-
-    def __unicode__(self):
-        return self.name
 
 
 class Artifact(models.Model):
@@ -18,8 +9,7 @@ class Artifact(models.Model):
     active = models.BooleanField(default=False)
     description = models.TextField(null=True, blank=True)
     description_fr = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='artifacts', null=True, blank=True)
-    icon_image = models.ImageField(upload_to='artifacts/icon', null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='artifacts/thumbnail', null=True, blank=True)
     unit_quantity = models.DecimalField(max_digits=14, decimal_places=2, null=True, blank=True)
     unit = models.CharField(max_length=50, null=True, blank=True)
     unit_verbose = models.CharField(max_length=50, null=True, blank=True)
@@ -60,6 +50,16 @@ class Artifact(models.Model):
         return ('artifact', (), {'slug': self.slug})
 
 
+class Image(models.Model):
+    artifact = models.ForeignKey(Artifact)
+    caption = models.CharField(max_length=500)
+    caption_fr = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='artifacts/images')
+
+    def __unicode__(self):
+        return u'Image for %s' % self.artifact.name
+
+
 class Footprint(models.Model):
     artifact = models.ForeignKey(Artifact)
     year = models.IntegerField(null=True)
@@ -70,7 +70,7 @@ class Footprint(models.Model):
     ton_offset_per_tree = models.DecimalField(max_digits=14, decimal_places=2, null=True, blank=True)
     annual_report = models.FileField(upload_to='annual_reports', null=True, blank=True)
     annual_report_fr = models.FileField(upload_to='annual_reports', null=True, blank=True)
-    carbon_sources = models.ManyToManyField(CarbonSource, through='FootprintCarbonSource')
+    carbon_sources = models.ManyToManyField('CarbonSource', through='FootprintCarbonSource')
 
     def __unicode__(self):
         return "%i Footprint for %s" % (self.year, self.artifact.name)
@@ -83,5 +83,16 @@ class Footprint(models.Model):
 
 class FootprintCarbonSource(models.Model):
     footprint = models.ForeignKey(Footprint)
-    source = models.ForeignKey(CarbonSource)
+    source = models.ForeignKey('CarbonSource')
     percent = models.IntegerField()
+
+    def __unicode__(self):
+        return u'%s - %s' % (self.footprint.name, self.source.name)
+
+
+class CarbonSource(models.Model):
+    name = models.CharField(max_length=100)
+    name_fr = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name

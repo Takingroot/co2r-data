@@ -1,11 +1,18 @@
 from django.db import models
 
+CONTACT_INFO_CHOICES = (('twitter', 'Twitter'),
+    ('facebook', 'Facebook'),
+    ('email', 'Email'),
+    ('other', 'Other'))
+
 
 class Organization(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='organizations')
     name = models.CharField(max_length=100)
     name_fr = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    description_fr = models.TextField(null=True, blank=True)
 
     def image_url(self):
         try:
@@ -21,6 +28,7 @@ class Organization(models.Model):
 
 
 class ContactInfo(models.Model):
+    contact_type = models.CharField(max_length=100, choices=CONTACT_INFO_CHOICES)
     name = models.CharField(max_length=100)
     name_fr = models.CharField(max_length=100)
     link = models.CharField(max_length=200)
