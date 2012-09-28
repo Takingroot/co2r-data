@@ -95,7 +95,7 @@ class FootprintCarbonSource(models.Model):
     percent = models.IntegerField()
 
     def __unicode__(self):
-        return u'%s - %s' % (self.footprint.name, self.source.name)
+        return u'%s - %s' % (self.footprint.artifact.name, self.source.name)
 
 
 class CarbonSource(models.Model):

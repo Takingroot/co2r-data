@@ -18,4 +18,6 @@ urlpatterns = patterns('',
 if settings.DEBUG:
     urlpatterns += patterns('django.contrib.staticfiles.views',
         url(r'^static/(?P<path>.*)$', 'serve'),
+        url(r'^admins/(?P<path>.*)$', 'serve'),
+
 )
