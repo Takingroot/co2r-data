@@ -47,8 +47,22 @@ class Artifact(models.Model, TranslatedModelMixin):
             'unit_verbose',
             'organization',
             'images',
-            'footprint'
-        ]
+            'footprints']
+
+    @property
+    def footprints(self):
+        footprints = self.footprint_set.all()
+
+        for footprint in footprints:
+            footprint.set_language(self.language_code)
+        return footprints
+
+    @property
+    def images(self):
+        images = self.image_set.all()
+        for image in images:
+            image.set_language(self.language_code)
+        return images
 
     @models.permalink
     def get_absolute_url(self):
@@ -68,7 +82,7 @@ class Image(models.Model):
         return u'Image for %s' % self.artifact.name
 
 
-class Footprint(models.Model):
+class Footprint(models.Model, TranslatedModelMixin):
     artifact = models.ForeignKey(Artifact)
     year = models.IntegerField(null=True)
     co2_per_unit = models.DecimalField(max_digits=14, decimal_places=2, null=True, blank=True)
@@ -81,6 +95,19 @@ class Footprint(models.Model):
     carbon_sources = models.ManyToManyField('CarbonSource', through='FootprintCarbonSource')
 
     translated_fields = ['annual_report']
+    language_code = 'en'
+
+    @property
+    def carbon_sources_list(self):
+        carbon_sources = FootprintCarbonSource.objects.filter(footprint=self)
+
+        for carbon_source in carbon_sources:
+            carbon_source.source.set_language(self.language_code)
+        return carbon_sources
+
+    def serialize_fields(self):
+        return ['year', 'co2_per_unit', 'total_tons_produced', 'total_offset_tons',
+            'total_trees_planted', 'ton_offset_per_tree', 'annual_report', 'carbon_sources_list']
 
     def __unicode__(self):
         return "%i Footprint for %s" % (self.year, self.artifact.name)
@@ -96,15 +123,26 @@ class FootprintCarbonSource(models.Model):
     source = models.ForeignKey('CarbonSource')
     percent = models.IntegerField()
 
+    @property
+    def name(self):
+        return self.source.name
+
+    def serialize_fields(self):
+        return ['name', 'percent']
+
     def __unicode__(self):
         return u'%s - %s' % (self.footprint.artifact.name, self.source.name)
 
 
-class CarbonSource(models.Model):
+class CarbonSource(models.Model, TranslatedModelMixin):
     name = models.CharField(max_length=100)
     name_fr = models.CharField(max_length=100)
 
     translated_fields = ['name']
+    language_code = 'en'
+
+    def serialize_fields(self):
+        return ['name']
 
     def __unicode__(self):
         return self.name
