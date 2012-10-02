@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>FAQs</h2>
+<dl>
+{% for faq in faqs %}
+<dd>{{ faq.question }}<dd>
+<dt>{{ faq.answer }}</dt>
+{% endfor %}
+</dl>
+{% endblock %}

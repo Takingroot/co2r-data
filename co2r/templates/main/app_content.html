@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Defined Terms</h2>
+<ul>
+{% for term in defined_terms %}
+<li>{{ term.name }} - {{ term.title }} - {{ term.content }} - {{ term.language }}</li>
+{% endfor %}
+</ul>
+
+<h3>Artifact Comparisons</h3>
+<ul>
+{% for comparison in equivalents %}
+<li>{{ comparison.phrase }} - {{ comparison.co2_amount_unit }} - {{ comparison.co2_amount }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

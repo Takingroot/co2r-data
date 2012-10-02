@@ -23,7 +23,7 @@ class TranslatedModelMixin(object):
         return
 
 
-class Faq(models.Model):
+class Faq(models.Model, TranslatedModelMixin):
     slug = models.SlugField(max_length=100, unique=True)
     question = models.CharField(max_length=500)
     question_fr = models.CharField(max_length=500)
@@ -32,17 +32,23 @@ class Faq(models.Model):
 
     translated_fields = ['question', 'answer']
 
+    def serialize_fields(self):
+        return ['slug', 'question', 'answer']
+
     def __unicode__(self):
         return self.slug
 
 
-class Co2Equivalents(models.Model):
+class Co2Equivalents(models.Model, TranslatedModelMixin):
     phrase = models.CharField(max_length=500)
     phrase_fr = models.CharField(max_length=500)
     co2_amount_unit = models.CharField(max_length=100)
     co2_amount = models.DecimalField(max_digits=14, decimal_places=2)
 
     translated_fields = ['phrase']
+
+    def serialize_fields(self):
+        return ['phrase', 'co2_amount_unit', 'co2_amount']
 
     def __unicode__(self):
         return self.phrase
@@ -53,6 +59,9 @@ class DefinedTerms(models.Model):
     title = models.CharField(max_length=500)
     content = models.TextField()
     language = models.CharField(max_length=20, choices=LANGUAGE_CHOICES)
+
+    def serialize_fields(self):
+        return ['term_name', 'title', 'content']
 
     def __unicode__(self):
         return u'%s - %s' % (self.term_name, self.language)
