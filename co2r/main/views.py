@@ -27,10 +27,10 @@ def app_content(request):
 
     equivalents = Co2Equivalents.objects.all()
 
-    language_code = request.GET.get('language', None)
-    if language_code != None:
-        for equivalent in equivalents:
-            equivalent.set_language(language_code)
+    language_code = request.GET.get('language', 'en')
+
+    for equivalent in equivalents:
+        equivalent.set_language(language_code)
 
     defined_terms = DefinedTerms.objects.filter(language=language_code)
 

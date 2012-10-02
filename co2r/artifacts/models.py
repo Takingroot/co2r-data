@@ -45,7 +45,9 @@ class Artifact(models.Model, TranslatedModelMixin):
             'unit_quantity',
             'unit',
             'unit_verbose',
-            'organization'
+            'organization',
+            'images',
+            'footprint'
         ]
 
     @models.permalink
