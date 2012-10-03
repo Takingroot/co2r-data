@@ -79,6 +79,16 @@ class Image(models.Model, TranslatedModelMixin):
     language_code = 'en'
     translated_fields = ['caption']
 
+    def serialize_fields(self):
+        return ['caption', 'image_url']
+
+    @property
+    def image_url(self):
+        try:
+            return self.image.url
+        except ValueError:
+            return ''
+
     def __unicode__(self):
         return u'Image for %s' % self.artifact.name
 
