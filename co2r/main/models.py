@@ -43,7 +43,7 @@ class Co2Equivalents(models.Model, TranslatedModelMixin):
     phrase = models.CharField(max_length=500)
     phrase_fr = models.CharField(max_length=500)
     co2_amount_unit = models.CharField(max_length=100)
-    co2_amount = models.DecimalField(max_digits=14, decimal_places=2)
+    co2_amount = models.FloatField()
 
     translated_fields = ['phrase']
 
