@@ -70,12 +70,13 @@ class Artifact(models.Model, TranslatedModelMixin):
         return url
 
 
-class Image(models.Model):
+class Image(models.Model, TranslatedModelMixin):
     artifact = models.ForeignKey(Artifact)
     caption = models.CharField(max_length=500, null=True, blank=True)
     caption_fr = models.CharField(max_length=500, null=True, blank=True)
     image = models.ImageField(upload_to='artifacts/images')
 
+    language_code = 'en'
     translated_fields = ['caption']
 
     def __unicode__(self):
