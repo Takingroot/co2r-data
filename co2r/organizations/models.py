@@ -1,5 +1,5 @@
 from django.db import models
-from apps.main.models import TranslatedModelMixin
+from co2r.main.models import TranslatedModelMixin
 
 CONTACT_INFO_CHOICES = (('twitter', 'Twitter'),
     ('facebook', 'Facebook'),
@@ -24,8 +24,16 @@ class Organization(models.Model, TranslatedModelMixin):
         except ValueError:
             return ''
 
+    @property
+    def contact_infos(self):
+        contact_infos = self.contactinfo_set.all()
+
+        for contact_info in contact_infos:
+            contact_info.set_language(self.language_code)
+        return contact_infos
+
     def serialize_fields(self):
-        return ['name', 'slug', 'image_url']
+        return ['name', 'slug', 'image_url', 'description', 'contact_infos']
 
     def __unicode__(self):
         return self.slug
@@ -40,6 +48,9 @@ class ContactInfo(models.Model, TranslatedModelMixin):
 
     translated_fields = ['name']
     language_code = 'en'
+
+    def serialize_fields(self):
+        return ['name', 'contact_type', 'link']
 
     def __unicode__(self):
         return u'%s - %s' % (self.organization.name, self.name)
