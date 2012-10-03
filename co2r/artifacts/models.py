@@ -72,8 +72,8 @@ class Artifact(models.Model, TranslatedModelMixin):
 
 class Image(models.Model):
     artifact = models.ForeignKey(Artifact)
-    caption = models.CharField(max_length=500)
-    caption_fr = models.CharField(max_length=500)
+    caption = models.CharField(max_length=500, null=True, blank=True)
+    caption_fr = models.CharField(max_length=500, null=True, blank=True)
     image = models.ImageField(upload_to='artifacts/images')
 
     translated_fields = ['caption']
