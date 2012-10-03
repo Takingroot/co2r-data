@@ -1,4 +1,5 @@
 from django.db import models
+from apps.main.models import TranslatedModelMixin
 
 CONTACT_INFO_CHOICES = (('twitter', 'Twitter'),
     ('facebook', 'Facebook'),
@@ -6,7 +7,7 @@ CONTACT_INFO_CHOICES = (('twitter', 'Twitter'),
     ('other', 'Other'))
 
 
-class Organization(models.Model):
+class Organization(models.Model, TranslatedModelMixin):
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='organizations')
     name = models.CharField(max_length=100)
@@ -15,6 +16,7 @@ class Organization(models.Model):
     description_fr = models.TextField(null=True, blank=True)
 
     translated_fields = ['name', 'description']
+    language_code = 'en'
 
     def image_url(self):
         try:
@@ -29,7 +31,7 @@ class Organization(models.Model):
         return self.slug
 
 
-class ContactInfo(models.Model):
+class ContactInfo(models.Model, TranslatedModelMixin):
     contact_type = models.CharField(max_length=100, choices=CONTACT_INFO_CHOICES)
     name = models.CharField(max_length=100)
     name_fr = models.CharField(max_length=100)
@@ -37,6 +39,7 @@ class ContactInfo(models.Model):
     organization = models.ForeignKey(Organization)
 
     translated_fields = ['name']
+    language_code = 'en'
 
     def __unicode__(self):
         return u'%s - %s' % (self.organization.name, self.name)
