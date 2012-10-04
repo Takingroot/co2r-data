@@ -15,9 +15,11 @@ class Artifact(models.Model, TranslatedModelMixin):
     unit = models.CharField(max_length=50, null=True, blank=True)
     unit_verbose = models.CharField(max_length=50, null=True, blank=True)
     unit_verbose_fr = models.CharField(max_length=50, null=True, blank=True)
+    for_total_made = models.CharField(max_length=200, null=True, blank=True)
+    for_total_made_fr = models.CharField(max_length=200, null=True, blank=True)
     organization = models.ForeignKey(Organization)
 
-    translated_fields = ['name', 'description', 'unit_verbose']
+    translated_fields = ['name', 'description', 'unit_verbose', 'for_total_made']
     language_code = 'en'
 
     def __unicode__(self):
@@ -45,6 +47,7 @@ class Artifact(models.Model, TranslatedModelMixin):
             'unit_quantity',
             'unit',
             'unit_verbose',
+            'for_total_made',
             'organization',
             'images',
             'footprints']
@@ -100,7 +103,6 @@ class Footprint(models.Model, TranslatedModelMixin):
     total_tons_produced = models.FloatField(null=True, blank=True)
     total_offset_tons = models.FloatField(null=True, blank=True)
     total_trees_planted = models.IntegerField(null=True, blank=True)
-    ton_offset_per_tree = models.FloatField(null=True, blank=True)
     annual_report = models.FileField(upload_to='annual_reports', null=True, blank=True)
     annual_report_fr = models.FileField(upload_to='annual_reports', null=True, blank=True)
     carbon_sources = models.ManyToManyField('CarbonSource', through='FootprintCarbonSource')
