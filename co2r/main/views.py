@@ -1,6 +1,7 @@
 from dynamicresponse.response import SerializeOrRender
 
 from co2r.main.models import Faq, Co2Equivalents, DefinedTerms
+from co2r.artifacts.models import OffsetVariables
 
 
 def faqs(request):
@@ -34,6 +35,9 @@ def app_content(request):
 
     defined_terms = DefinedTerms.objects.filter(language=language_code)
 
+    offset_variables = OffsetVariables.objects.all()
+
+    context['offset_variables'] = offset_variables
     context['co2_artifact_comparisons'] = equivalents
     context['defined_terms'] = defined_terms
 

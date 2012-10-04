@@ -1,5 +1,5 @@
 from django.contrib import admin
-from co2r.artifacts.models import CarbonSource, Footprint, Artifact, Footprint, Image
+from co2r.artifacts.models import CarbonSource, Footprint, Artifact, Image, OffsetVariables
 
 
 class FootprintInline(admin.StackedInline):
@@ -27,4 +27,5 @@ class FootprintAdmin(admin.ModelAdmin):
 admin.site.register(CarbonSource, admin.ModelAdmin)
 admin.site.register(Footprint, FootprintAdmin)
 admin.site.register(Artifact, ArtifactAdmin)
+admin.site.register(OffsetVariables, admin.ModelAdmin)
 

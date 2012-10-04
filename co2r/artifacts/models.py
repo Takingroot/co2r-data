@@ -159,3 +159,13 @@ class CarbonSource(models.Model, TranslatedModelMixin):
 
     def __unicode__(self):
         return self.name
+
+
+class OffsetVariables(models.Model):
+    year = models.IntegerField(unique=True)
+    offsets_per_co2_ton = models.FloatField(null=True, blank=True)
+    trees_per_offset = models.FloatField(null=True, blank=True)
+
+    def __unicode__(self):
+        return "Variables for %i" % self.year
+
