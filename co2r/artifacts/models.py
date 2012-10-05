@@ -118,9 +118,16 @@ class Footprint(models.Model, TranslatedModelMixin):
             carbon_source.source.set_language(self.language_code)
         return carbon_sources
 
+    @property
+    def annual_report_url(self):
+        try:
+            return self.annual_report.url
+        except ValueError:
+            return ''
+
     def serialize_fields(self):
         return ['year', 'co2_per_unit', 'total_tons_produced', 'total_offset_tons',
-            'total_trees_planted', 'ton_offset_per_tree', 'annual_report', 'carbon_sources_list']
+            'total_trees_planted', 'ton_offset_per_tree', 'annual_report_url', 'carbon_sources_list']
 
     def __unicode__(self):
         return "%i Footprint for %s" % (self.year, self.artifact.name)
