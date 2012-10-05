@@ -50,7 +50,8 @@ class Artifact(models.Model, TranslatedModelMixin):
             'for_total_made',
             'organization',
             'images',
-            'footprints']
+            'footprints',
+            'other_actions']
 
     @property
     def footprints(self):
@@ -66,6 +67,14 @@ class Artifact(models.Model, TranslatedModelMixin):
         for image in images:
             image.set_language(self.language_code)
         return images
+
+    @property
+    def other_actions(self):
+        other_actions = self.otheraction_set.all()
+        for other_action in other_actions:
+            other_action.set_language(self.language_code)
+
+        return other_actions
 
     @models.permalink
     def get_absolute_url(self):
@@ -136,6 +145,20 @@ class Footprint(models.Model, TranslatedModelMixin):
     def get_absolute_url(self):
         return ('footprint', (), {'slug': self.artifact.slug,
             'year': self.year})
+
+
+class OtherAction(models.Model, TranslatedModelMixin):
+    footprint = models.ForeignKey(Footprint)
+    name = models.CharField(max_length=100)
+    name_fr = models.CharField(max_length=100)
+    description = models.TextField()
+    description_fr = models.TextField()
+
+    language_code = 'en'
+    translated_fields = ['name', 'description']
+
+    def serialize_fields(self):
+        return ['name', 'description']
 
 
 class FootprintCarbonSource(models.Model):

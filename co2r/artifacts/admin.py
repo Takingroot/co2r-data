@@ -1,5 +1,10 @@
 from django.contrib import admin
-from co2r.artifacts.models import CarbonSource, Footprint, Artifact, Image, OffsetVariables
+from co2r.artifacts.models import CarbonSource, Footprint, Artifact, Image, OffsetVariables, OtherAction
+
+
+class OtherActionInline(admin.StackedInline):
+    model = OtherAction
+    extra = 0
 
 
 class FootprintInline(admin.StackedInline):
@@ -13,7 +18,7 @@ class ImageInline(admin.TabularInline):
 
 
 class ArtifactAdmin(admin.ModelAdmin):
-    inlines = [FootprintInline, ImageInline]
+    inlines = [FootprintInline, ImageInline, OtherActionInline]
 
 
 class FootprintCarbonSourceInline(admin.TabularInline):
