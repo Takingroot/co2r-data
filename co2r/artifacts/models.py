@@ -148,7 +148,7 @@ class Footprint(models.Model, TranslatedModelMixin):
 
 
 class OtherAction(models.Model, TranslatedModelMixin):
-    artifact = models.ForeignKey(Artifact)
+    footprint = models.ForeignKey(Footprint)
     name = models.CharField(max_length=100)
     name_fr = models.CharField(max_length=100)
     description = models.TextField()

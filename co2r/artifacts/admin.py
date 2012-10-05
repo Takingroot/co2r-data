@@ -18,7 +18,7 @@ class ImageInline(admin.TabularInline):
 
 
 class ArtifactAdmin(admin.ModelAdmin):
-    inlines = [FootprintInline, ImageInline, OtherActionInline]
+    inlines = [FootprintInline, ImageInline]
 
 
 class FootprintCarbonSourceInline(admin.TabularInline):
@@ -26,7 +26,7 @@ class FootprintCarbonSourceInline(admin.TabularInline):
 
 
 class FootprintAdmin(admin.ModelAdmin):
-    inlines = [FootprintCarbonSourceInline]
+    inlines = [FootprintCarbonSourceInline, OtherActionInline]
 
 
 admin.site.register(CarbonSource, admin.ModelAdmin)
