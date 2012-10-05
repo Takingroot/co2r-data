@@ -14,6 +14,7 @@ class Organization(models.Model, TranslatedModelMixin):
     name_fr = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     description_fr = models.TextField(null=True, blank=True)
+    website_url = models.CharField(max_length=400, blank=True)
 
     translated_fields = ['name', 'description']
     language_code = 'en'
@@ -33,7 +34,7 @@ class Organization(models.Model, TranslatedModelMixin):
         return contact_infos
 
     def serialize_fields(self):
-        return ['name', 'slug', 'image_url', 'description', 'contact_infos']
+        return ['name', 'slug', 'image_url', 'description', 'contact_infos', 'website_url']
 
     def __unicode__(self):
         return self.slug
