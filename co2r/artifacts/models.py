@@ -50,8 +50,7 @@ class Artifact(models.Model, TranslatedModelMixin):
             'for_total_made',
             'organization',
             'images',
-            'footprints',
-            'other_actions']
+            'footprints']
 
     @property
     def footprints(self):
@@ -67,14 +66,6 @@ class Artifact(models.Model, TranslatedModelMixin):
         for image in images:
             image.set_language(self.language_code)
         return images
-
-    @property
-    def other_actions(self):
-        other_actions = self.otheraction_set.all()
-        for other_action in other_actions:
-            other_action.set_language(self.language_code)
-
-        return other_actions
 
     @models.permalink
     def get_absolute_url(self):
@@ -136,7 +127,16 @@ class Footprint(models.Model, TranslatedModelMixin):
 
     def serialize_fields(self):
         return ['year', 'co2_per_unit', 'total_tons_produced', 'total_offset_tons',
-            'total_trees_planted', 'ton_offset_per_tree', 'annual_report_url', 'carbon_sources_list']
+            'total_trees_planted', 'ton_offset_per_tree', 'annual_report_url', 'carbon_sources_list',
+            'other_actions']
+
+    @property
+    def other_actions(self):
+        other_actions = self.otheraction_set.all()
+        for other_action in other_actions:
+            other_action.set_language(self.language_code)
+
+        return other_actions
 
     def __unicode__(self):
         return "%i Footprint for %s" % (self.year, self.artifact.name)
