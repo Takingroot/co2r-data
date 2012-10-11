@@ -162,8 +162,11 @@ class OtherAction(models.Model, TranslatedModelMixin):
     def description_formatted(self):
         return linebreaksbr(self.description)
 
+    def description_list(self):
+        return self.description.split('\n')
+
     def serialize_fields(self):
-        return ['name', 'description_formatted']
+        return ['name', 'description_formatted', 'description_list']
 
 
 class FootprintCarbonSource(models.Model):
