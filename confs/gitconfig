@@ -1,14 +1,17 @@
 [core]
-	repositoryformatversion = 0
-	filemode = true
-	bare = false
-	logallrefupdates = true
-	ignorecase = true
-[remote "heroku"]
-	url = git@heroku.com:frozen-bayou-9064.git
-	fetch = +refs/heads/*:refs/remotes/heroku/*
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+[remote "origin"]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = git@github.com:Takingroot/co2r-data.git
 [remote "staging"]
-	url = git@heroku.com:pacific-wave-1838.git
+	url = git@heroku.com:co2r-data-staging.git
+	fetch = +refs/heads/*:refs/remotes/heroku/*
+[remote "production"]
+	url = git@heroku.com:co2r-data.git
 	fetch = +refs/heads/*:refs/remotes/staging/*
 [remote "pierre"]
 	url = git@github.com:pdr/co2r.git
