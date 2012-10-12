@@ -117,6 +117,8 @@ class Footprint(models.Model, TranslatedModelMixin):
 
         for carbon_source in carbon_sources:
             carbon_source.source.set_language(self.language_code)
+            carbon_source.percent = carbon_source.co2_amount_tons / self.total_tons_produced
+
         return carbon_sources
 
     @property
@@ -192,14 +194,14 @@ class OtherActionType(models.Model, TranslatedModelMixin):
 class FootprintCarbonSource(models.Model):
     footprint = models.ForeignKey(Footprint)
     source = models.ForeignKey('CarbonSource')
-    percent = models.IntegerField()
+    co2_amount_tons = models.FloatField()
 
     @property
     def name(self):
         return self.source.name
 
     def serialize_fields(self):
-        return ['name', 'percent']
+        return ['name', 'co2_amount_tons', 'percent']
 
     def __unicode__(self):
         return u'%s - %s' % (self.footprint.artifact.name, self.source.name)
