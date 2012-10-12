@@ -104,7 +104,6 @@ class Footprint(models.Model, TranslatedModelMixin):
     co2_per_unit = models.FloatField(null=True, blank=True)
     total_tons_produced = models.FloatField(null=True, blank=True)
     total_offset_tons = models.FloatField(null=True, blank=True)
-    total_trees_planted = models.IntegerField(null=True, blank=True)
     annual_report = models.FileField(upload_to='annual_reports', null=True, blank=True)
     annual_report_fr = models.FileField(upload_to='annual_reports', null=True, blank=True)
     carbon_sources = models.ManyToManyField('CarbonSource', through='FootprintCarbonSource')
@@ -151,11 +150,10 @@ class Footprint(models.Model, TranslatedModelMixin):
 
 class OtherAction(models.Model, TranslatedModelMixin):
     footprint = models.ForeignKey(Footprint)
-    name = models.CharField(max_length=100)
-    name_fr = models.CharField(max_length=100)
-    description = models.TextField()
-    description_fr = models.TextField()
-
+    type = models.ForeignKey('OtherActionType', null=True)
+    description = models.TextField(help_text="Each new line creates a new list item")
+    description_fr = models.TextField(help_text="Each new line creates a new list item")
+    
     language_code = 'en'
     translated_fields = ['name', 'description']
 
@@ -165,8 +163,30 @@ class OtherAction(models.Model, TranslatedModelMixin):
     def description_list(self):
         return self.description.split('\n')
 
+    def name(self):
+        self.type.set_language(self.language_code)
+        return self.type
+
     def serialize_fields(self):
         return ['name', 'description_formatted', 'description_list']
+
+    def __unicode__(self):
+        return "Other Action for %s" % (self.footprint)
+
+
+class OtherActionType(models.Model, TranslatedModelMixin):
+    name = models.CharField(max_length=100)
+    name_fr = models.CharField(max_length=100)
+    icon_code = models.CharField(max_length=20)
+
+    language_code = 'en'
+    translated_fields = ['name']
+
+    def serialize_fields(self):
+        return ['name', 'icon_code']
+
+    def __unicode__(self):
+        return self.name
 
 
 class FootprintCarbonSource(models.Model):

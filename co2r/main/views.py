@@ -1,6 +1,6 @@
 from dynamicresponse.response import SerializeOrRender
 
-from co2r.main.models import Faq, Co2Equivalents, DefinedTerms
+from co2r.main.models import Faq, Co2Equivalents, DefinedTerms, Locale
 from co2r.artifacts.models import OffsetVariables
 
 
@@ -26,7 +26,7 @@ def app_content(request):
 
     context = {}
 
-    equivalents = Co2Equivalents.objects.all()
+    equivalents = Co2Equivalents.objects.filter(active=True)
 
     language_code = request.GET.get('language', 'en')
 
@@ -40,5 +40,13 @@ def app_content(request):
     context['offset_variables'] = offset_variables
     context['co2_artifact_comparisons'] = equivalents
     context['defined_terms'] = defined_terms
+
+    return SerializeOrRender('main/app_content.html', context)
+
+def locale(request, language):
+    context = {}
+
+    locale = Locale.objects.get(language=language)
+    context['locale'] = locale
 
     return SerializeOrRender('main/app_content.html', context)
