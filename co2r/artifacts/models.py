@@ -101,7 +101,7 @@ class Image(models.Model, TranslatedModelMixin):
 class Footprint(models.Model, TranslatedModelMixin):
     artifact = models.ForeignKey(Artifact)
     year = models.IntegerField(null=True)
-    co2_per_unit = models.FloatField(null=True, blank=True)
+    co2_per_unit = models.FloatField(null=True, blank=True, help_text="Enter quantities as tonnes")
     total_tons_produced = models.FloatField(null=True, blank=True)
     total_offset_tons = models.FloatField(null=True, blank=True)
     annual_report = models.FileField(upload_to='annual_reports', null=True, blank=True)
