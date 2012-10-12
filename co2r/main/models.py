@@ -43,9 +43,13 @@ class Co2Equivalents(models.Model, TranslatedModelMixin):
     phrase = models.CharField(max_length=500)
     phrase_fr = models.CharField(max_length=500)
     co2_amount_unit = models.CharField(max_length=100)
+    co2_amount_unit_fr = models.CharField(max_length=100)
     co2_amount = models.FloatField()
 
-    translated_fields = ['phrase']
+    translated_fields = ['phrase', 'co2_amount_unit']
+
+    class Meta:
+        verbose_name_plural = 'Co2 Equivalents'
 
     def serialize_fields(self):
         return ['phrase', 'co2_amount_unit', 'co2_amount']
@@ -59,6 +63,9 @@ class DefinedTerms(models.Model):
     title = models.CharField(max_length=500)
     content = models.TextField()
     language = models.CharField(max_length=20, choices=LANGUAGE_CHOICES)
+
+    class Meta:
+        verbose_name_plural = 'Defined Terms'
 
     def serialize_fields(self):
         return ['term_name', 'title', 'content']

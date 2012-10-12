@@ -1,4 +1,6 @@
 from django.db import models
+from django.template.defaultfilters import linebreaksbr
+
 from co2r.organizations.models import Organization
 from co2r.main.models import TranslatedModelMixin
 
@@ -157,8 +159,14 @@ class OtherAction(models.Model, TranslatedModelMixin):
     language_code = 'en'
     translated_fields = ['name', 'description']
 
+    def description_formatted(self):
+        return linebreaksbr(self.description)
+
+    def description_list(self):
+        return self.description.split('\n')
+
     def serialize_fields(self):
-        return ['name', 'description']
+        return ['name', 'description_formatted', 'description_list']
 
 
 class FootprintCarbonSource(models.Model):
@@ -195,6 +203,9 @@ class OffsetVariables(models.Model):
     year = models.IntegerField(unique=True)
     offsets_per_co2_ton = models.FloatField(null=True, blank=True)
     trees_per_offset = models.FloatField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Offset Variables'
 
     def __unicode__(self):
         return "Variables for %i" % self.year

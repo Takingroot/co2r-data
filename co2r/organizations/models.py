@@ -51,8 +51,16 @@ class ContactInfo(models.Model, TranslatedModelMixin):
     translated_fields = ['name']
     language_code = 'en'
 
+    def full_link(self):
+        prepend = {'facebook': 'http://facebook.com/',
+            'twitter': 'http://twitter.com/',
+            'email': 'mailto:',
+            'other': ''}
+
+        return prepend[self.contact_type] + self.link
+
     def serialize_fields(self):
-        return ['name', 'contact_type', 'link']
+        return ['name', 'contact_type', 'link', 'full_link']
 
     def __unicode__(self):
         return u'%s - %s' % (self.organization.name, self.name)

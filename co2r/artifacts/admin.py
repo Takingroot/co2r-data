@@ -6,28 +6,18 @@ class OtherActionInline(admin.StackedInline):
     model = OtherAction
     extra = 0
 
-
-class FootprintInline(admin.StackedInline):
-    model = Footprint
-    extra = 0
-
-
 class ImageInline(admin.TabularInline):
     model = Image
     extra = 0
 
-
 class ArtifactAdmin(admin.ModelAdmin):
-    inlines = [FootprintInline, ImageInline]
-
+    inlines = [ImageInline]
 
 class FootprintCarbonSourceInline(admin.TabularInline):
     model = Footprint.carbon_sources.through
 
-
 class FootprintAdmin(admin.ModelAdmin):
     inlines = [FootprintCarbonSourceInline, OtherActionInline]
-
 
 admin.site.register(CarbonSource, admin.ModelAdmin)
 admin.site.register(Footprint, FootprintAdmin)
