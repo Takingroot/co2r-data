@@ -2,6 +2,7 @@ from django.db import models
 from co2r.main.models import TranslatedModelMixin
 
 CONTACT_INFO_CHOICES = (('twitter', 'Twitter'),
+    ('website', 'Website'),
     ('facebook', 'Facebook'),
     ('email', 'Email'),
     ('other', 'Other'))

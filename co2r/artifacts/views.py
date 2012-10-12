@@ -9,7 +9,7 @@ def artifacts(request):
     """
     Returns a list of all artifacts
     """
-    artifacts = Artifact.objects.all()
+    artifacts = Artifact.objects.filter(active=True)
 
     language_code = request.GET.get('language', None)
     if language_code != None:
