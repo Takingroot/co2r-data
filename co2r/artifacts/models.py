@@ -7,11 +7,11 @@ from co2r.main.models import TranslatedModelMixin
 
 class Artifact(models.Model, TranslatedModelMixin):
     slug = models.SlugField(max_length=100, unique=True)
-    name = models.CharField(max_length=100)
-    name_fr = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, help_text='Supports Html')
+    name_fr = models.CharField(max_length=100, help_text='Accepte l\'Html')
     active = models.BooleanField(default=False)
-    description = models.TextField(null=True, blank=True)
-    description_fr = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, help_text='Supports Html')
+    description_fr = models.TextField(null=True, blank=True, help_text='Accepte l\'Html')
     thumbnail = models.ImageField(upload_to='artifacts/thumbnail', null=True, blank=True)
     unit_quantity = models.FloatField(null=True, blank=True)
     unit = models.CharField(max_length=50, null=True, blank=True)
