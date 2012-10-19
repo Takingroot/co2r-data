@@ -149,10 +149,20 @@ class Footprint(models.Model, TranslatedModelMixin):
         if variables == '':
             return 'No Offset Variables Set for Year %i' % self.year
 
-        trees_planted = math.floor(self.total_offset_tons * variables.offsets_per_co2_ton * variables.trees_per_offset)
+        trees_planted = math.floor(self.offsets * variables.trees_per_offset)
 
         return trees_planted
 
+    @property
+    def offsets(self):
+        variables = self.offset_variables
+        
+        if variables == '':
+            return 'No Offset Variables Set for Year %i' % self.year
+
+        offsets = self.total_offset_tons / variables.offsets_per_co2_ton
+
+        return offsets
 
     @property
     def annual_report_url(self):
@@ -163,7 +173,7 @@ class Footprint(models.Model, TranslatedModelMixin):
 
     def serialize_fields(self):
         return ['year', 'co2_per_unit', 'total_tons_produced', 'total_offset_tons',
-            'trees_planted', 'annual_report_url', 'carbon_sources_list',
+            'trees_planted', 'offsets', 'annual_report_url', 'carbon_sources_list',
             'other_actions']
 
     @property
