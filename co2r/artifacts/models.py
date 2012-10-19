@@ -144,7 +144,6 @@ class Footprint(models.Model, TranslatedModelMixin):
 
     @property
     def trees_planted(self):
-        import pdb; pdb.set_trace()
         variables = self.offset_variables
         
         if variables == '':
