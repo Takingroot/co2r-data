@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 from django.template.defaultfilters import linebreaksbr
 
@@ -111,6 +113,8 @@ class Footprint(models.Model, TranslatedModelMixin):
     translated_fields = ['annual_report']
     language_code = 'en'
 
+    _offset_variables = None
+
     @property
     def carbon_sources_list(self):
         carbon_sources = FootprintCarbonSource.objects.filter(footprint=self)
@@ -122,6 +126,36 @@ class Footprint(models.Model, TranslatedModelMixin):
         return carbon_sources
 
     @property
+    def offset_variables(self):
+        if self.year == None:
+            return None
+
+        if self._offset_variables != None:
+            return self._offset_variables
+
+        try:
+            offset_variables = OffsetVariables.objects.get(year=self.year)
+        except OffsetVariables.DoesNotExist:
+            self._offset_variables = ''
+
+        self._offset_variables = offset_variables
+
+        return self._offset_variables
+
+    @property
+    def trees_planted(self):
+        import pdb; pdb.set_trace()
+        variables = self.offset_variables
+        
+        if variables == '':
+            return 'No Offset Variables Set for Year %i' % self.year
+
+        trees_planted = math.floor(self.total_offset_tons * variables.offsets_per_co2_ton * variables.trees_per_offset)
+
+        return trees_planted
+
+
+    @property
     def annual_report_url(self):
         try:
             return self.annual_report.url
@@ -130,7 +164,7 @@ class Footprint(models.Model, TranslatedModelMixin):
 
     def serialize_fields(self):
         return ['year', 'co2_per_unit', 'total_tons_produced', 'total_offset_tons',
-            'total_trees_planted', 'ton_offset_per_tree', 'annual_report_url', 'carbon_sources_list',
+            'trees_planted', 'annual_report_url', 'carbon_sources_list',
             'other_actions']
 
     @property
