@@ -21,6 +21,8 @@ class Artifact(models.Model, TranslatedModelMixin):
     unit_verbose_fr = models.CharField(max_length=50, null=True, blank=True)
     for_total_made = models.CharField(max_length=200, null=True, blank=True)
     for_total_made_fr = models.CharField(max_length=200, null=True, blank=True)
+    twitter_feed = models.TextField(null=True, blank=True)
+    twitter_feed_fr = models.TextField(null=True, blank=True)
     organization = models.ForeignKey(Organization)
 
     translated_fields = ['name', 'description', 'unit_verbose', 'for_total_made']
@@ -28,6 +30,13 @@ class Artifact(models.Model, TranslatedModelMixin):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def twitter_feed_code(self):
+        if self.language_code == 'en' or self.twitter_feed_fr == None:
+            return self.twitter_feed
+        else:
+            return self.twitter_feed_fr
 
     def icon_image_url(self):
         return self.icon_image.url
@@ -54,7 +63,8 @@ class Artifact(models.Model, TranslatedModelMixin):
             'for_total_made',
             'organization',
             'images',
-            'footprints']
+            'footprints'
+            'twitter_feed_code']
 
     @property
     def footprints(self):
