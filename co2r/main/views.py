@@ -20,8 +20,7 @@ def email(request):
         'status': {
             'success': False,
             'errors': []
-        },
-        'data': {}
+        }
     }
 
     if request.method == 'POST':
@@ -32,7 +31,7 @@ def email(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             recipients = [recipient[1] for recipient in settings.TAKINGROOT_STAFF]
-            import pdb; pdb.set_trace()
+
             send_mail(subject, message, sender, recipients, fail_silently=False)
             results['status']['success'] = True
         else:

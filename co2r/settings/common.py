@@ -5,7 +5,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(__file__, os.path.pardir,\
      os.path.pardir, os.path.pardir))
 
 DEBUG = True
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Pierre Drescher', 'pierre.drescher@gmail.com'),
@@ -13,8 +13,14 @@ ADMINS = (
 
 TAKINGROOT_STAFF = (
     ('Pierre', 'pierre.drescher@gmail.com'),
-    #('Brooke', 'brooke@takingroot.org'),
+    ('Brooke', 'brooke@takingroot.org'),
 )
+
+if DEBUG == True:
+    TAKINGROOT_STAFF = (
+        ('Pierre', 'pierre.drescher@gmail.com'),
+        ('Jason', 'jasonkuhrt@gme.com')
+    )   
 
 EMAIL_SENDER = 'Taking Root <info@takingroot.org>'
 
