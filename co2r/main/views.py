@@ -1,7 +1,46 @@
 from dynamicresponse.response import SerializeOrRender
 
+from django.core.mail import send_mail
+from django.utils import simplejson
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+
 from co2r.main.models import Faq, Co2Equivalents, DefinedTerms, Locale
+from co2r.main.forms import EmailForm
 from co2r.artifacts.models import OffsetVariables
+
+@csrf_exempt
+def email(request):
+    """
+    Allow the Co2r frontend to send emails
+    """
+
+    results = {
+        'status': {
+            'success': False,
+            'errors': []
+        },
+        'data': {}
+    }
+
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        
+        if form.is_valid():
+            sender = settings.EMAIL_SENDER
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            recipients = [recipient[1] for recipient in settings.TAKINGROOT_STAFF]
+            import pdb; pdb.set_trace()
+            send_mail(subject, message, sender, recipients, fail_silently=False)
+            results['status']['success'] = True
+        else:
+            results['errors'] = form.errors
+
+    json = simplejson.dumps(results)
+
+    return HttpResponse(json, mimetype='application/json')
 
 
 def faqs(request):

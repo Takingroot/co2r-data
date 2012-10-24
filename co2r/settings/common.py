@@ -11,6 +11,18 @@ ADMINS = (
     ('Pierre Drescher', 'pierre.drescher@gmail.com'),
 )
 
+TAKINGROOT_STAFF = (
+    ('Pierre', 'pierre.drescher@gmail.com'),
+    #('Brooke', 'brooke@takingroot.org'),
+)
+
+EMAIL_SENDER = 'Taking Root <info@takingroot.org>'
+
+EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
+EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
+EMAIL_HOST_USER = os.getenv('MAILGUN_SMTP_LOGIN')
+EMAIL_PORT = os.getenv('MAILGUN_SMTP_PORT')
+
 MANAGERS = ADMINS
 
 import dj_database_url
