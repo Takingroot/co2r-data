@@ -63,7 +63,7 @@ class Artifact(models.Model, TranslatedModelMixin):
             'for_total_made',
             'organization',
             'images',
-            'footprints'
+            'footprints',
             'twitter_feed_code']
 
     @property
