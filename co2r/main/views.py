@@ -24,19 +24,22 @@ def email(request):
     }
 
     if request.method == 'POST':
-        json_data = simplejson.loads(request.POST)
-        form = EmailForm(json_data)
-        
-        if form.is_valid():
-            sender = settings.EMAIL_SENDER
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            recipients = [recipient[1] for recipient in settings.TAKINGROOT_STAFF]
+        try:
+            json_data = simplejson.loads(request.raw_post_data)
+            form = EmailForm(json_data)
+            
+            if form.is_valid():
+                sender = settings.EMAIL_SENDER
+                subject = form.cleaned_data['subject']
+                message = form.cleaned_data['message']
+                recipients = [recipient[1] for recipient in settings.TAKINGROOT_STAFF]
 
-            send_mail(subject, message, sender, recipients, fail_silently=False)
-            results['status']['success'] = True
-        else:
-            results['errors'] = form.errors
+                send_mail(subject, message, sender, recipients, fail_silently=False)
+                results['status']['success'] = True
+            else:
+                results['errors'] = form.errors
+        except ValueError:
+            results['errors'] = {'data': 'The POST data sent with this request does not appear to be valid JSON.'}
 
     json = simplejson.dumps(results)
 
