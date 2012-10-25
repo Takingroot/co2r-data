@@ -24,7 +24,8 @@ def email(request):
     }
 
     if request.method == 'POST':
-        form = EmailForm(request.POST)
+        json_data = json.loads(request.POST)
+        form = EmailForm(json_data)
         
         if form.is_valid():
             sender = settings.EMAIL_SENDER
