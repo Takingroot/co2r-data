@@ -19,7 +19,7 @@ TAKINGROOT_STAFF = (
 if DEBUG == True:
     TAKINGROOT_STAFF = (
         ('Pierre', 'pierre.drescher@gmail.com'),
-        ('Jason', 'jasonkuhrt@gme.com')
+        ('Jason', 'jasonkuhrt@me.com')
     )   
 
 EMAIL_SENDER = 'Taking Root <info@takingroot.org>'
