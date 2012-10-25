@@ -8,6 +8,6 @@ class Co2rMiddleware(object):
         
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
-        response['Access-Control-Allow-Headers'] = 'X-Requested-With'
+        response['Access-Control-Allow-Headers'] = 'X-Requested-With, Content-Type'
         
         return response
