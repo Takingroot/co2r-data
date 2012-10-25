@@ -24,7 +24,7 @@ def email(request):
     }
 
     if request.method == 'POST':
-        json_data = json.loads(request.POST)
+        json_data = simplejson.loads(request.POST)
         form = EmailForm(json_data)
         
         if form.is_valid():
