@@ -41,7 +41,7 @@ class LocaleAdmin(admin.ModelAdmin):
             'fields': ('other_things_you_can_do', 'can_do_feedback_title', 'can_do_feedback_description',
                 'can_do_feedback_button_label', 'can_do_spread_word_title', 'can_do_spread_word_description',
                 'can_do_spread_word_button_label', 'can_do_recruit_company_title', 'can_do_recruit_company_description', 'can_do_recruit_company_button_label',
-                'can_do_sponsor_co2r_title', 'can_do_sponsor_co2r_description', 'can_do_recruit_company_button_label')
+                'can_do_sponsor_co2r_title', 'can_do_sponsor_co2r_description', 'can_do_sponsor_co2r_button_label')
             }),
         ('Feedback', {
             'classes': ('wide'),
