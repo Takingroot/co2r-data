@@ -5,10 +5,17 @@ from co2r.main.models import Co2Equivalents, DefinedTerms, Faq, Locale
 class LocaleAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('language',)}),
+        ('Images', {
+            'classes': ('wide',),
+            'fields': ('heroshot_home', 'heroshot_mission')
+            }),
         ('Directory', {
             'classes': ('wide',),
-            'fields': ('co2r', 'introduction_title', 'introduction_text',
-                'learn_more', 'directory_filter_input_prompt')
+            'fields': ('directory', 'co2r', 'introduction_title', 'introduction_text',
+                'learn_more', 'directory_filter_input_prompt',
+                'directory_action_title_one', 'directory_action_body_one',
+                'directory_action_title_two', 'directory_action_body_two',
+                'directory_action_title_three', 'directory_action_body_three')
             }),
         ('Artifacts', {
             'classes': ('wide',),
@@ -20,7 +27,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('About', {
             'classes': ('wide',),
-            'fields': ('our_mission', 'about_community_title', 'about_community_text',
+            'fields': ('our_mission', 'mission_map_help_tip', 'about_community_title', 'about_community_text',
                 'about_carbon_farmers_title', 'about_carbon_farmers_text',
                 'about_tab_label_map', 'about_tab_label_video', 'about_topic_1_title',
                 'about_topic_1_text', 'about_topic_2_title', 'about_topic_2_text', 'about_topic_3_title',
@@ -53,7 +60,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('Footer', {
             'classes': ('wide'),
-            'fields': ('switch_language', 'footer_sponsor_name', 'footer_sponsor_description',
+            'fields': ('social_bar_text', 'switch_language', 'footer_sponsor_name', 'footer_sponsor_description',
                 'footer_sponsor_link', 'footer_taking_root', 'footer_taking_root_description',
                 'footer_colofon')
             }),
