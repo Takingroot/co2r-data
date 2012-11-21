@@ -54,10 +54,12 @@ class ContactInfo(models.Model, TranslatedModelMixin):
     def full_link(self):
         prepend = {'facebook': 'http://facebook.com/',
             'twitter': 'http://twitter.com/',
-            'email': 'mailto:',
-            'other': ''}
+            'email': 'mailto:'}
 
-        return prepend[self.contact_type] + self.link
+        if self.contact_type in prepend:
+            return prepend[self.contact_type] + self.link
+        else:
+            return self.link
 
     def serialize_fields(self):
         return ['name', 'contact_type', 'link', 'full_link']
