@@ -83,7 +83,7 @@ class Locale(models.Model):
     language = models.CharField(max_length=20, choices=LANGUAGE_CHOICES, unique=True)
     heroshot_home = models.ImageField(upload_to='heroshots', null=True, blank=True)
     heroshot_mission = models.ImageField(upload_to='heroshots', null=True, blank=True)
-    co2r = models.CharField(max_length=100, blank=True, null=True, verbose_name='Directory Nav Text')
+    co2r = models.CharField(max_length=100, blank=True, null=True, verbose_name='App Title')
     shoot = models.CharField(max_length=100, blank=True, null=True, verbose_name='Send Feedback Button')
     our_mission = models.CharField(max_length=100, blank=True, null=True, verbose_name='About nav text')
     mission_map_help_tip = models.TextField(blank=True, null=True)
