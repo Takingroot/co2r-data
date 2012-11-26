@@ -146,7 +146,7 @@ class Footprint(models.Model, TranslatedModelMixin):
         try:
             offset_variables = OffsetVariables.objects.get(year=self.year)
         except OffsetVariables.DoesNotExist:
-            self._offset_variables = ''
+            offset_variables = ''
 
         self._offset_variables = offset_variables
 
