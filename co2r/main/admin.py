@@ -62,7 +62,7 @@ class LocaleAdmin(admin.ModelAdmin):
         ('Footer', {
             'classes': ('wide'),
             'fields': ('social_bar_text', 'social_bar_artifact_text', 'switch_language', 'footer_sponsor_name', 'footer_sponsor_description',
-                'footer_sponsor_link', 'footer_taking_root', 'footer_taking_root_description',
+                'footer_sponsor_link', 'footer_partners_title', 'footer_taking_root', 'footer_taking_root_description',
                 'footer_colofon', 'branding_subtext')
             }),
         )
