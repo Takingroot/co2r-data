@@ -46,7 +46,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('Participate', {
             'classes': ('wide'),
-            'fields': ('other_things_you_can_do', 'can_do_nav_text_description', 'can_do_feedback_title', 'can_do_feedback_description',
+            'fields': ('participate', 'participate_nav_text_description', 'can_do_feedback_title', 'can_do_feedback_description',
                 'can_do_feedback_button_label', 'can_do_spread_word_title', 'can_do_spread_word_description',
                 'can_do_spread_word_button_label', 'can_do_recruit_company_title', 'can_do_recruit_company_description', 'can_do_recruit_company_button_label',
                 'can_do_sponsor_co2r_title', 'can_do_sponsor_co2r_description', 'can_do_sponsor_co2r_button_label')
@@ -61,7 +61,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('Footer', {
             'classes': ('wide'),
-            'fields': ('social_bar_text', 'switch_language', 'footer_sponsor_name', 'footer_sponsor_description',
+            'fields': ('social_bar_text', 'social_bar_artifact_text', 'switch_language', 'footer_sponsor_name', 'footer_sponsor_description',
                 'footer_sponsor_link', 'footer_taking_root', 'footer_taking_root_description',
                 'footer_colofon', 'branding_subtext')
             }),
