@@ -10,21 +10,38 @@ CONTACT_INFO_CHOICES = (('twitter', 'Twitter'),
 
 class Organization(models.Model, TranslatedModelMixin):
     slug = models.SlugField(max_length=100, unique=True)
-    image = models.ImageField(upload_to='organizations')
+    logo = models.ImageField(upload_to='organizations', null=True, blank=True)
+    logo_mark = models.ImageField(upload_to='organizations', null=True, blank=True)
     name = models.CharField(max_length=100)
     name_fr = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     description_fr = models.TextField(null=True, blank=True)
+    is_partner = models.BooleanField(default=False)
     website_url = models.CharField(max_length=400, blank=True)
+    twitter_handle = models.CharField(max_length=40, blank=True)
+    twitter_handle_fr = models.CharField(max_length=40, blank=True)
 
     translated_fields = ['name', 'description']
     language_code = 'en'
 
-    def image_url(self):
+    def logo_url(self):
         try:
-            return self.image.url
+            return self.logo.url
         except ValueError:
             return ''
+
+    def logo_mark_url(self):
+        try:
+            return self.logo_mark.url
+        except ValueError:
+            return ''
+
+    @property
+    def available_twitter_handle(self):
+        if self.language_code == 'en' or self.twitter_handle_fr == None:
+            return self.twitter_handle
+        else:
+            return self.twitter_handle_fr
 
     @property
     def contact_infos(self):
@@ -35,7 +52,8 @@ class Organization(models.Model, TranslatedModelMixin):
         return contact_infos
 
     def serialize_fields(self):
-        return ['name', 'slug', 'image_url', 'description', 'contact_infos', 'website_url']
+        return ['name', 'slug', 'logo_url', 'logo_mark_url', 'description', 'contact_infos', 'website_url',\
+            'available_twitter_handle']
 
     def __unicode__(self):
         return self.slug
