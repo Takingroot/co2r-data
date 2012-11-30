@@ -160,6 +160,7 @@ class Locale(models.Model):
     footer_sponsor_name = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     footer_sponsor_description = models.TextField(blank=True, null=True, help_text='Supports Html')
     footer_sponsor_link = models.CharField(max_length=100, blank=True, null=True)
+    footer_partners_title = models.CharField(max_length=100, blank=True, null=True)
     footer_taking_root = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     footer_taking_root_description = models.TextField(blank=True, null=True, help_text='Supports Html')
     footer_colofon = models.TextField(blank=True, null=True, help_text='Supports Html')
