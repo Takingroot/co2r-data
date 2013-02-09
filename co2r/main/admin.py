@@ -15,7 +15,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('Directory', {
             'classes': ('wide',),
-            'fields': ('directory', 'directory_nav_text_description', 'co2r', 'introduction_title', 'introduction_text',
+            'fields': ('directory', 'directory_nav_text_description', 'introduction_title', 'introduction_text',
                 'learn_more', 'directory_filter_input_prompt',
                 'directory_action_title_one', 'directory_action_body_one',
                 'directory_action_title_two', 'directory_action_body_two',
