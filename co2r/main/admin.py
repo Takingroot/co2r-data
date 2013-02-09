@@ -8,7 +8,7 @@ class LocaleAdmin(admin.ModelAdmin):
         ('Header', {
             'classes': ('wide',),
             'fields': ('co2r', 'branding_subtext',)
-            })
+            }),
         ('Images', {
             'classes': ('wide',),
             'fields': ('heroshot_home', 'heroshot_mission')
