@@ -27,7 +27,7 @@ def email(request):
         try:
             json_data = simplejson.loads(request.raw_post_data)
             form = EmailForm(json_data)
-            
+
             if form.is_valid():
                 sender = settings.EMAIL_SENDER
                 subject = form.cleaned_data['subject']
@@ -58,7 +58,7 @@ def faqs(request):
         for faq in faqs:
             faq.set_language(language_code)
 
-    return Serialize('main/faqs.html', {'faqs': faqs})
+    return Serialize({'faqs': faqs})
 
 
 def app_content(request):
@@ -83,7 +83,8 @@ def app_content(request):
     context['co2_artifact_comparisons'] = equivalents
     context['defined_terms'] = defined_terms
 
-    return Serialize('main/app_content.html', context)
+    return Serialize(context)
+
 
 def locale(request, language):
     context = {}
@@ -91,4 +92,4 @@ def locale(request, language):
     locale = Locale.objects.get(language=language)
     context['locale'] = locale
 
-    return Serialize('main/app_content.html', context)
+    return Serialize(context)

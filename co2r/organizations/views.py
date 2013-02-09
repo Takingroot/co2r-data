@@ -13,6 +13,4 @@ def organizations(request):
         for organization in organizations:
             organization.set_language(language_code)
 
-    return Serialize('organizations/list.html', {'organizations': organizations})
-
-# Create your views here.
+    return Serialize({'organizations': organizations})

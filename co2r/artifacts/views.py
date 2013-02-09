@@ -16,7 +16,7 @@ def artifacts(request):
         for artifact in artifacts:
             artifact.set_language(language_code)
 
-    return Serialize('artifacts/list.html', {'artifacts': artifacts})
+    return Serialize({'artifacts': artifacts})
 
 
 def artifact(request, slug):
@@ -29,12 +29,12 @@ def artifact(request, slug):
     if language_code != None:
         artifact.set_language(language_code)
 
-    return Serialize('artifacts/artifact.html', {'artifact': artifact})
+    return Serialize({'artifact': artifact})
 
 
 def footprints(request):
     footprints = Footprint.objects.all()
-    return Serialize('artifacts/footprints.html', {'footprints': footprints})
+    return Serialize({'footprints': footprints})
 
 
 def footprint(request, slug, year):
@@ -44,6 +44,6 @@ def footprint(request, slug, year):
     except Footprint.DoesNotExist:
         raise Http404
 
-    return Serialize('artifacts/footprint.html', {'footprint': footprint})
+    return Serialize({'footprint': footprint})
 
 # Create your views here.
