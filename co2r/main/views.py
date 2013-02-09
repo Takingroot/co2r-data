@@ -1,4 +1,4 @@
-from dynamicresponse.response import SerializeOrRender
+from dynamicresponse.response import Serialize
 
 from django.core.mail import send_mail
 from django.utils import simplejson
@@ -58,7 +58,7 @@ def faqs(request):
         for faq in faqs:
             faq.set_language(language_code)
 
-    return SerializeOrRender('main/faqs.html', {'faqs': faqs})
+    return Serialize('main/faqs.html', {'faqs': faqs})
 
 
 def app_content(request):
@@ -83,7 +83,7 @@ def app_content(request):
     context['co2_artifact_comparisons'] = equivalents
     context['defined_terms'] = defined_terms
 
-    return SerializeOrRender('main/app_content.html', context)
+    return Serialize('main/app_content.html', context)
 
 def locale(request, language):
     context = {}
@@ -91,4 +91,4 @@ def locale(request, language):
     locale = Locale.objects.get(language=language)
     context['locale'] = locale
 
-    return SerializeOrRender('main/app_content.html', context)
+    return Serialize('main/app_content.html', context)

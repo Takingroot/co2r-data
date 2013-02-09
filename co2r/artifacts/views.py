@@ -1,4 +1,4 @@
-from dynamicresponse.response import SerializeOrRender
+from dynamicresponse.response import Serialize
 
 from django.http import Http404
 
@@ -16,7 +16,7 @@ def artifacts(request):
         for artifact in artifacts:
             artifact.set_language(language_code)
 
-    return SerializeOrRender('artifacts/list.html', {'artifacts': artifacts})
+    return Serialize('artifacts/list.html', {'artifacts': artifacts})
 
 
 def artifact(request, slug):
@@ -29,12 +29,12 @@ def artifact(request, slug):
     if language_code != None:
         artifact.set_language(language_code)
 
-    return SerializeOrRender('artifacts/artifact.html', {'artifact': artifact})
+    return Serialize('artifacts/artifact.html', {'artifact': artifact})
 
 
 def footprints(request):
     footprints = Footprint.objects.all()
-    return SerializeOrRender('artifacts/footprints.html', {'footprints': footprints})
+    return Serialize('artifacts/footprints.html', {'footprints': footprints})
 
 
 def footprint(request, slug, year):
@@ -44,6 +44,6 @@ def footprint(request, slug, year):
     except Footprint.DoesNotExist:
         raise Http404
 
-    return SerializeOrRender('artifacts/footprint.html', {'footprint': footprint})
+    return Serialize('artifacts/footprint.html', {'footprint': footprint})
 
 # Create your views here.

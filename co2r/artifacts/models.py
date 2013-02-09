@@ -202,9 +202,9 @@ class OtherAction(models.Model, TranslatedModelMixin):
     type = models.ForeignKey('OtherActionType', null=True)
     description = models.TextField(help_text="Each new line creates a new list item")
     description_fr = models.TextField(help_text="Each new line creates a new list item")
-    
+
     language_code = 'en'
-    translated_fields = ['name', 'description']
+    translated_fields = ['description']
 
     def description_formatted(self):
         return linebreaksbr(self.description)

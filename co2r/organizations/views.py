@@ -1,4 +1,4 @@
-from dynamicresponse.response import SerializeOrRender
+from dynamicresponse.response import Serialize
 from co2r.organizations.models import Organization
 
 
@@ -13,6 +13,6 @@ def organizations(request):
         for organization in organizations:
             organization.set_language(language_code)
 
-    return SerializeOrRender('organizations/list.html', {'organizations': organizations})
+    return Serialize('organizations/list.html', {'organizations': organizations})
 
 # Create your views here.
