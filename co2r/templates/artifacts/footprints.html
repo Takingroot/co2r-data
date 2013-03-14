@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+{% for footprint in footprints %}
+<li>
+<a href="{{ footprint.get_absolute_url }}">{{ footprint }}</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -5,11 +5,29 @@ PROJECT_ROOT = os.path.abspath(os.path.join(__file__, os.path.pardir,\
      os.path.pardir, os.path.pardir))
 
 DEBUG = True
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Pierre Drescher', 'pierre.drescher@gmail.com'),
 )
+
+TAKINGROOT_STAFF = (
+    ('Pierre', 'pierre.drescher@gmail.com'),
+    ('Brooke', 'brooke@takingroot.org'),
+)
+
+if DEBUG == True:
+    TAKINGROOT_STAFF = (
+        ('Pierre', 'pierre.drescher@gmail.com'),
+        ('Jason', 'jasonkuhrt@me.com')
+    )   
+
+EMAIL_SENDER = 'Taking Root <info@takingroot.org>'
+
+EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
+EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
+EMAIL_HOST_USER = os.getenv('MAILGUN_SMTP_LOGIN')
+EMAIL_PORT = os.getenv('MAILGUN_SMTP_PORT')
 
 MANAGERS = ADMINS
 
@@ -25,6 +43,10 @@ TIME_ZONE = 'Canada/Eastern'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = (
+    ('fr-ca', 'French'),
+)
 
 SITE_ID = 1
 
@@ -97,6 +119,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'dynamicresponse.middleware.api.APIMiddleware',
+    'co2r.middleware.Co2rMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -115,13 +139,12 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
     'co2r.main',
-    'co2r.products',
+    'co2r.artifacts',
     'co2r.organizations',
 )
 

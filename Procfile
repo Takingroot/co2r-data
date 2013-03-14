@@ -1,0 +1,1 @@
+web: gunicorn co2r.wsgi -b 0.0.0.0:$PORT -w 3

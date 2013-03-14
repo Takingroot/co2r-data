@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+{% for artifact in artifacts %}
+<li>
+<a href="{{ artifact.get_absolute_url }}">{{ artifact }}</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

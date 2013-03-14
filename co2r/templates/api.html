@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Available URLs</h3>
+<ul>
+<li>r'^api/faqs$</li>
+<li>r'^api/app$</li>
+<li>r'^api/artifacts$</li>
+<li>r'^api/artifact/(?P<slug>[a-z0-9-_]+)$</li>
+<li>r'^api/footprints$</li>
+<li>r'^api/footprint/(?P<slug>[a-z0-9-_]+)/(?P<year>[0-9]+)$</li>
+</ul>
+{% endblock %}
