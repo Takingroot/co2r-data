@@ -1,4 +1,7 @@
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-AWS_STORAGE_BUCKET_NAME = 'co2r'
+try:
+    from production_local import *
+except ImportError:
+    pass
