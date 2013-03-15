@@ -1,6 +1,9 @@
 from common import *
 
-environment = os.getenv('ENVIRONMENT', 'DEVELOP')
+try:
+    from environment import ENVIRONMENT
+except ImportError:
+    ENVIRONMENT = 'DEVELOP'
 
 try:
     if environment == 'DEVELOP':
