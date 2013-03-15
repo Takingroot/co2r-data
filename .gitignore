@@ -6,3 +6,4 @@ media/*
 *.swp
 celeryev.pid
 *.un~
+environment.py
