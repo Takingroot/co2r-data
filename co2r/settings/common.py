@@ -99,10 +99,6 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'co2r-development'
-
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '6cs3^_oje@nq79g!bfpm*brq5$$swzs4dh=vypha#z!j=_$erc'
