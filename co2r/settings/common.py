@@ -24,9 +24,11 @@ if DEBUG == True:
 
 EMAIL_SENDER = 'Taking Root <info@takingroot.org>'
 
+EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_HOST_USER = 'postmaster@takingroot.mailgun.org'
-EMAIL_PORT = 465
+EMAIL_HOST_PASSWORD = '2-zrh1w3xhm7'
+EMAIL_PORT = 587
 
 MANAGERS = ADMINS
 
@@ -117,8 +119,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'dynamicresponse.middleware.api.APIMiddleware',
     'co2r.middleware.Co2rMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'co2r.urls'
