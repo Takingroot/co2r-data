@@ -24,8 +24,8 @@ if DEBUG == True:
 
 EMAIL_SENDER = 'Taking Root <info@takingroot.org>'
 
-EMAIL_HOST = smtp.mailgun.org
-EMAIL_HOST_USER = postmaster@takingroot.mailgun.org
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@takingroot.mailgun.org'
 EMAIL_PORT = 465
 
 MANAGERS = ADMINS
