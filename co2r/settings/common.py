@@ -78,7 +78,7 @@ MEDIA_URL = 'http://data.co2r.com/media/'
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
 # URL prefix for static files.
-STATIC_URL = 'http://data.co2r.com/static/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -108,7 +108,6 @@ SECRET_KEY = '6cs3^_oje@nq79g!bfpm*brq5$$swzs4dh=vypha#z!j=_$erc'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -132,6 +131,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'responsive_admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -172,3 +172,6 @@ LOGGING = {
         },
     }
 }
+
+
+ALLOWED_HOSTS = ['data.co2r.com', '*.herokuapp.com']

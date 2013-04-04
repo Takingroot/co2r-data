@@ -15,11 +15,11 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('Directory', {
             'classes': ('wide',),
-            'fields': ('directory', 'directory_nav_text_description', 'introduction_title', 'introduction_text',
-                'learn_more', 'directory_filter_input_prompt',
-                'directory_action_title_one', 'directory_action_body_one',
+            'fields': ('directory', 'introduction_title', 'introduction_text',
+                'learn_more', 'directory_action_title_one', 'directory_action_body_one',
                 'directory_action_title_two', 'directory_action_body_two',
-                'directory_action_title_three', 'directory_action_body_three')
+                'directory_action_title_three', 'directory_action_body_three',
+                'directory_filter_input_prompt')
             }),
         ('Artifacts', {
             'classes': ('wide',),
@@ -32,7 +32,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('About', {
             'classes': ('wide',),
-            'fields': ('our_mission', 'our_mission_nav_text_description', 'mission_map_help_tip', 'about_community_title', 'about_community_text',
+            'fields': ('our_mission', 'our_mission_intro', 'mission_map_help_tip', 'about_community_title', 'about_community_text',
                 'about_carbon_farmers_title', 'about_carbon_farmers_text',
                 'about_tab_label_map', 'about_tab_label_video', 'about_topic_1_title',
                 'about_topic_1_text', 'about_topic_2_title', 'about_topic_2_text', 'about_topic_3_title',
@@ -40,17 +40,17 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('FAQ', {
             'classes': ('wide',),
-            'fields': ('faq', 'faq_nav_text_description')
+            'fields': ('faq',)
             }),
         ('Register', {
             'classes': ('wide'),
-            'fields': ('register_your_product', 'register_your_product_nav_text_description', 'register_introduction',
+            'fields': ('register_your_product', 'register_introduction',
                 'your_message', 'name_or_organization', 'email', 'phone',
                 'inquire', 'register_artifact_left_column', 'register_artifact_right_body')
             }),
         ('Participate', {
             'classes': ('wide'),
-            'fields': ('participate', 'participate_nav_text_description', 'can_do_feedback_title', 'can_do_feedback_description',
+            'fields': ('participate', 'can_do_feedback_title', 'can_do_feedback_description',
                 'can_do_feedback_button_label', 'can_do_spread_word_title', 'can_do_spread_word_description',
                 'can_do_spread_word_button_label', 'can_do_recruit_company_title', 'can_do_recruit_company_description', 'can_do_recruit_company_button_label',
                 'can_do_sponsor_co2r_title', 'can_do_sponsor_co2r_description', 'can_do_sponsor_co2r_button_label')
