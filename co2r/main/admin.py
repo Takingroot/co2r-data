@@ -32,7 +32,7 @@ class LocaleAdmin(admin.ModelAdmin):
             }),
         ('About', {
             'classes': ('wide',),
-            'fields': ('our_mission', 'our_mission_nav_text_description', 'mission_map_help_tip', 'about_community_title', 'about_community_text',
+            'fields': ('our_mission', 'our_mission_intro', 'our_mission_nav_text_description', 'mission_map_help_tip', 'about_community_title', 'about_community_text',
                 'about_carbon_farmers_title', 'about_carbon_farmers_text',
                 'about_tab_label_map', 'about_tab_label_video', 'about_topic_1_title',
                 'about_topic_1_text', 'about_topic_2_title', 'about_topic_2_text', 'about_topic_3_title',
