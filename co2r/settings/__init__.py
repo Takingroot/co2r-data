@@ -6,11 +6,11 @@ except ImportError:
     ENVIRONMENT = 'DEVELOP'
 
 try:
-    if environment == 'DEVELOP':
+    if ENVIRONMENT == 'DEVELOP':
         from development import *
-    elif environment == 'STAGING':
+    elif ENVIRONMENT == 'STAGING':
         from staging import *
-    elif environment == 'PRODUCTION':
+    elif ENVIRONMENT == 'PRODUCTION':
         from production import *
 except ImportError:
     pass
