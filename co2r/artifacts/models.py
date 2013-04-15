@@ -29,6 +29,8 @@ class Artifact(models.Model, TranslatedModelMixin):
         'for_total_made', 'location']
     language_code = 'en'
 
+    _footprints = None
+
     def __unicode__(self):
         return self.name
 
@@ -50,6 +52,7 @@ class Artifact(models.Model, TranslatedModelMixin):
             'slug',
             'active',
             'description',
+            'total_trees_planted',
             'thumbnail_url',
             'unit_quantity',
             'unit',
@@ -60,13 +63,29 @@ class Artifact(models.Model, TranslatedModelMixin):
             'footprints',
             'location']
 
+
+
+    @property
+    def total_trees_planted(self):
+        total_trees = 0
+
+        for footprint in self.footprints:
+            try:
+                total_trees += footprint.trees_planted
+            except ValueError:
+                pass
+
     @property
     def footprints(self):
-        footprints = self.footprint_set.all()
+        if self._footprints is None:
+            footprints = self.footprint_set.all()
 
-        for footprint in footprints:
-            footprint.set_language(self.language_code)
-        return footprints
+            for footprint in footprints:
+                footprint.set_language(self.language_code)
+
+            self._footprints = footprints
+
+        return self._footprints
 
     @property
     def images(self):
