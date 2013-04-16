@@ -173,5 +173,6 @@ LOGGING = {
     }
 }
 
+RESPONSIVE_ADMIN_FIXED_SUBMIT_LINE = True
 
 ALLOWED_HOSTS = ['data.co2r.com', '*.herokuapp.com']
