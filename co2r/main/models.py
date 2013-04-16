@@ -138,6 +138,7 @@ class Locale(models.Model):
     artifact_co2_sources = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     artifact_co2_per_thing_made = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     artifact_no_data = models.CharField(max_length=100, blank=True, null=True)
+    artifact_organization_label = models.CharField(max_length=100, blank=True, null=True, default='Organization')
     about_tab_label_map = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html and co2r-tags')
     about_tab_label_video = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html and co2r-tags')
     about_topic_1_title = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html and co2r-tags')
