@@ -8,4 +8,4 @@ django-dynamicresponse==0.4.1
 south==0.7.6
 PIL==1.1.7
 gunicorn==0.14.6
-django-responsive-admin
+django-responsive-admin==0.2.1
