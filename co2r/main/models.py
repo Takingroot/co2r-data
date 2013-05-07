@@ -135,6 +135,7 @@ class Locale(models.Model):
     artifact_report_section_title = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     artifact_other_eco_actions = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     artifact_total_vs_offset = models.CharField(max_length=500, blank=True, null=True, help_text='Supports Html')
+    artifact_total_trees_planted = models.CharField(max_length=500, blank=True, null=True, help_text='Supports Html')
     artifact_co2_sources = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     artifact_co2_per_thing_made = models.CharField(max_length=100, blank=True, null=True, help_text='Supports Html')
     artifact_no_data = models.CharField(max_length=100, blank=True, null=True)
