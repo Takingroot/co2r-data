@@ -75,6 +75,8 @@ class Artifact(models.Model, TranslatedModelMixin):
             except ValueError:
                 pass
 
+        return total_trees
+
     @property
     def footprints(self):
         if self._footprints is None:
