@@ -20,10 +20,11 @@ class Organization(models.Model, TranslatedModelMixin):
     partnership_description = models.TextField(null=True, blank=True)
     partnership_description_fr = models.TextField(null=True, blank=True)
     website_url = models.CharField(max_length=400, blank=True)
+    website_url_fr = models.CharField(max_length=400, blank=True)
     twitter_handle = models.CharField(max_length=40, blank=True)
     twitter_handle_fr = models.CharField(max_length=40, blank=True)
 
-    translated_fields = ['name', 'description', 'partnership_description']
+    translated_fields = ['name', 'description', 'partnership_description', 'website_url']
     language_code = 'en'
 
     def logo_url(self):
