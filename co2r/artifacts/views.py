@@ -15,6 +15,7 @@ def artifacts(request):
     if language_code != None:
         for artifact in artifacts:
             artifact.set_language(language_code)
+            artifact.organization.set_language(language_code)
 
     return Serialize({'artifacts': artifacts})
 
@@ -28,6 +29,7 @@ def artifact(request, slug):
     language_code = request.GET.get('language', None)
     if language_code != None:
         artifact.set_language(language_code)
+        artifact.organization.set_language(language_code)
 
     return Serialize({'artifact': artifact})
 

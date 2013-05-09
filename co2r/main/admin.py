@@ -25,7 +25,7 @@ class LocaleAdmin(admin.ModelAdmin):
             'classes': ('wide',),
             'fields': ('artifact_offset_since', 'learn_more_about_co2r',
                 'artifact_business_card_contact_lead_in', 'artifact_co2_per_thing_made',
-                'artifact_total_vs_offset', 'trees_planted', 'artifact_co2_sources',
+                'artifact_total_vs_offset', 'artifact_total_trees_planted', 'trees_planted', 'artifact_co2_sources',
                 'artifact_other_eco_actions', 'artifact_report_section_title',
                 'artifact_download_report', 'artifact_share_default_message',
                 'artifact_no_data', 'artifact_organization_label')

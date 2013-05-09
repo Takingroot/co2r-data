@@ -63,15 +63,13 @@ class Artifact(models.Model, TranslatedModelMixin):
             'footprints',
             'location']
 
-
-
     @property
     def total_trees_planted(self):
         total_trees = 0
 
         for footprint in self.footprints:
             try:
-                total_trees += footprint.trees_planted
+                total_trees += int(footprint.trees_planted)
             except ValueError:
                 pass
 
@@ -144,11 +142,12 @@ class Footprint(models.Model, TranslatedModelMixin):
     def carbon_sources_list(self):
         carbon_sources = FootprintCarbonSource.objects.filter(footprint=self)
 
-        for carbon_source in carbon_sources:
-            carbon_source.source.set_language(self.language_code)
-            carbon_source.percent = carbon_source.co2_amount_tons / self.total_tons_produced
+        if self.total_tons_produced != None:
+            for carbon_source in carbon_sources:
+                carbon_source.source.set_language(self.language_code)
+                carbon_source.percent = carbon_source.co2_amount_tons / self.total_tons_produced
 
-        return carbon_sources
+            return carbon_sources
 
     @property
     def offset_variables(self):
