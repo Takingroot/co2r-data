@@ -87,6 +87,7 @@ class Locale(models.Model):
     shoot = models.CharField(max_length=100, blank=True, null=True, verbose_name='Send Feedback Button')
     our_mission = models.CharField(max_length=100, blank=True, null=True, verbose_name='About nav text')
     our_mission_intro = models.TextField(blank=True, null=True, verbose_name='About mission intro')
+    location = models.CharField(max_length=100, blank=True, null=True)
     mission_map_help_tip = models.TextField(blank=True, null=True)
     directory = models.CharField(max_length=100, blank=True, null=True)
     directory_action_title_one = models.CharField(max_length=100, blank=True, null=True)
