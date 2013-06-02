@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Pierre Drescher', 'pierre.drescher@gmail.com'),
+    ('Pierre Drescher', 'pierre.drescher+takingroot@gmail.com'),
 )
 
 TAKINGROOT_STAFF = (
