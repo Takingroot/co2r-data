@@ -23,8 +23,10 @@ class Organization(models.Model, TranslatedModelMixin):
     website_url_fr = models.CharField(max_length=400, blank=True)
     twitter_handle = models.CharField(max_length=40, blank=True)
     twitter_handle_fr = models.CharField(max_length=40, blank=True)
+    widget_code = models.TextField(null=True, blank=True)
+    widget_code_fr = models.TextField(null=True, blank=True)
 
-    translated_fields = ['name', 'description', 'partnership_description', 'website_url']
+    translated_fields = ['name', 'description', 'partnership_description', 'website_url', 'widget_code']
     language_code = 'en'
 
     def logo_url(self):
@@ -56,7 +58,7 @@ class Organization(models.Model, TranslatedModelMixin):
 
     def serialize_fields(self):
         return ['name', 'slug', 'logo_url', 'logo_mark_url', 'description', 'contact_infos', 'website_url',\
-            'available_twitter_handle', 'is_partner', 'partnership_description']
+            'available_twitter_handle', 'is_partner', 'partnership_description', 'widget_code']
 
     def __unicode__(self):
         return self.slug
