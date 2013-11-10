@@ -32,7 +32,7 @@ class Artifact(models.Model, TranslatedModelMixin):
     _footprints = None
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     def icon_image_url(self):
         return self.icon_image.url
@@ -255,7 +255,7 @@ class OtherActionType(models.Model, TranslatedModelMixin):
         return ['name', 'icon_code']
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
 
 class FootprintCarbonSource(models.Model):
@@ -285,7 +285,7 @@ class CarbonSource(models.Model, TranslatedModelMixin):
         return ['name']
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
 
 class OffsetVariables(models.Model):
