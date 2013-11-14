@@ -209,7 +209,7 @@ class Footprint(models.Model, TranslatedModelMixin):
         return other_actions
 
     def __unicode__(self):
-        return "%i Footprint for %s" % (self.year, self.artifact.name)
+        return u"%i Footprint for %s" % (self.year, self.artifact.name)
 
     @models.permalink
     def get_absolute_url(self):
@@ -240,7 +240,7 @@ class OtherAction(models.Model, TranslatedModelMixin):
         return ['name', 'description_formatted', 'description_list']
 
     def __unicode__(self):
-        return "Other Action for %s" % (self.footprint)
+        return u"Other Action for %s" % (self.footprint)
 
 
 class OtherActionType(models.Model, TranslatedModelMixin):
@@ -297,5 +297,5 @@ class OffsetVariables(models.Model):
         verbose_name_plural = 'Offset Variables'
 
     def __unicode__(self):
-        return "Variables for %i" % self.year
+        return u"Variables for %i" % self.year
 

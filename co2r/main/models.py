@@ -40,7 +40,7 @@ class Faq(models.Model, TranslatedModelMixin):
         return ['slug', 'question', 'answer']
 
     def __unicode__(self):
-        return self.slug
+        return u'%s' % self.slug
 
 
 class Co2Equivalents(models.Model, TranslatedModelMixin):
@@ -60,7 +60,7 @@ class Co2Equivalents(models.Model, TranslatedModelMixin):
         return ['phrase', 'co2_amount_unit', 'co2_amount']
 
     def __unicode__(self):
-        return self.phrase
+        return u'%s' % self.phrase
 
 
 class DefinedTerms(models.Model):
@@ -160,4 +160,4 @@ class Locale(models.Model):
     branding_subtext = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        return 'Site %s Locale' % self.language
+        return u'Site %s Locale' % self.language

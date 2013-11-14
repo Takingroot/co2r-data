@@ -61,7 +61,7 @@ class Organization(models.Model, TranslatedModelMixin):
             'available_twitter_handle', 'is_partner', 'partnership_description', 'widget_code']
 
     def __unicode__(self):
-        return self.slug
+        return u'%s' % self.slug
 
 
 class ContactInfo(models.Model, TranslatedModelMixin):
